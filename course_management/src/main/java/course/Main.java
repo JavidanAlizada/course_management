@@ -6,8 +6,8 @@ import course.service.factory.ServiceFactory;
 import java.util.Scanner;
 
 public class Main {
-
     private static Exception exception;
+    private static boolean isProcessing = true;
 
     public static void setException(Exception exception) {
         Main.exception = exception;
@@ -21,45 +21,54 @@ public class Main {
         System.out.println("4. Exit From System");
     }
 
+    private static void exceptionHandler(Exception exception) {
+        setException(exception);
+        ServiceFactory.runService(ServiceType.EXCEPTION).service(exception);
+        setException(null);
+    }
+
+    private static void process(int chosenServiceNumber) throws Exception {
+        switch (chosenServiceNumber) {
+            case 1:
+                ServiceFactory.runService(ServiceType.ACCOUNT).service();
+                break;
+            case 2:
+                ServiceFactory.runService(ServiceType.COURSE).service();
+                break;
+            case 3:
+                ServiceFactory.runService(ServiceType.FORM).service();
+                break;
+            case 4:
+                ServiceFactory.runService(ServiceType.COMPLETED).service();
+                isProcessing = false;
+                break;
+            default:
+                ServiceFactory.runService(ServiceType.EXCEPTION).service();
+                break;
+        }
+    }
+
+    private static void execute(Scanner scanner) {
+        while (isProcessing) {
+            try {
+                showMenu();
+                process(scanner.nextInt());
+            } catch (Exception exception) {
+                exceptionHandler(exception);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         ServiceFactory.setScanner(scanner);
         System.out.println("Welcome Course System");
-        boolean isProcessing = true;
         try {
             ServiceFactory.runService(ServiceType.FORM).service();
-            while (isProcessing) {
-                try {
-                    showMenu();
-                    int chosenServiceNumber = scanner.nextInt();
-                    switch (chosenServiceNumber) {
-                        case 1:
-                            ServiceFactory.runService(ServiceType.ACCOUNT).service();
-                            break;
-                        case 2:
-                            ServiceFactory.runService(ServiceType.COURSE).service();
-                            break;
-                        case 3:
-                            ServiceFactory.runService(ServiceType.FORM).service();
-                            break;
-                        case 4:
-                            ServiceFactory.runService(ServiceType.COMPLETED).service();
-                            isProcessing = false;
-                            break;
-                        default:
-                            ServiceFactory.runService(ServiceType.EXCEPTION).service();
-                            break;
-                    }
-                } catch (Exception exception) {
-                    setException(exception);
-                    ServiceFactory.runService(ServiceType.EXCEPTION).service(exception);
-                    setException(null);
-                }
-            }
+            execute(scanner);
         } catch (Exception exception) {
-            setException(exception);
-            ServiceFactory.runService(ServiceType.EXCEPTION).service(exception);
-            setException(null);
+            exceptionHandler(exception);
         }
     }
 }
+
