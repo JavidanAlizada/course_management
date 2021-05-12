@@ -1,15 +1,17 @@
 package course.service.impl;
 
 import course.constant.ExceptionMessage;
+import course.constant.ModelType;
 import course.constant.Role;
 import course.model.Course;
 import course.model.User;
 import course.model.UserCourse;
 import course.repository.impl.CourseRepository;
 import course.service.Service;
-import course.service.exception.ErrorMessageFactory;
+import course.service.factory.ErrorMessageFactory;
 import course.service.util.UserCourseService;
 import course.service.util.UserService;
+import course.validator.impl.UniqueValidator;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -67,6 +69,8 @@ public class CourseService implements Service {
             case 4:
                 System.out.println("Enter course name");
                 String registeredCourseName = scanner.next();
+                if (!UniqueValidator.isNameFieldUnique(registeredCourseName, ModelType.COURSE))
+                    throw ErrorMessageFactory.message(ExceptionMessage.UNIQUE_NAME);
                 System.out.println("Enter course description");
                 String description = scanner.next();
                 System.out.println("Enter course content");
@@ -84,6 +88,8 @@ public class CourseService implements Service {
                 String courseId = scanner.next();
                 System.out.println("Enter course name");
                 String registCourseName = scanner.next();
+                if (!UniqueValidator.isNameFieldUnique(registCourseName, ModelType.COURSE))
+                    throw ErrorMessageFactory.message(ExceptionMessage.UNIQUE_NAME);
                 System.out.println("Enter course description");
                 String editDescription = scanner.next();
                 System.out.println("Enter course content");

@@ -13,5 +13,6 @@ public enum ExceptionMessage {
     SERVICE_NOT_FOUND_ERROR,
     WRONG_CREDENTIALS,
     ROLE_NOT_FOUND,
-    REGISTER_ERROR
+    REGISTER_ERROR,
+    UNIQUE_NAME
 }

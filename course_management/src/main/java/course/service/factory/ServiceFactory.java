@@ -1,6 +1,7 @@
-package course.service;
+package course.service.factory;
 
 import course.constant.ServiceType;
+import course.service.Service;
 import course.service.impl.*;
 
 import java.util.Scanner;

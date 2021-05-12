@@ -1,5 +1,6 @@
 package course.model;
 
+import course.validator.Unique;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +13,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class Course {
-
     private int id;
+    @Unique
     private String name;
     private String description;
     private String content;

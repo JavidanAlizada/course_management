@@ -1,4 +1,4 @@
-package course.service.exception;
+package course.service.factory;
 
 import course.constant.ExceptionMessage;
 import course.helper.MessageReader;
@@ -31,6 +31,8 @@ public class ErrorMessageFactory {
                 return new Exception(MessageReader.readMessage("role.error"));
             case REGISTER_ERROR:
                 return new Exception(MessageReader.readMessage("user.register"));
+            case UNIQUE_NAME:
+                return new Exception(MessageReader.readMessage("name.unique"));
             default:
                 return new Exception();
         }

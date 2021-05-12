@@ -4,7 +4,7 @@ import course.constant.ExceptionMessage;
 import course.constant.Role;
 import course.model.User;
 import course.service.Service;
-import course.service.exception.ErrorMessageFactory;
+import course.service.factory.ErrorMessageFactory;
 import course.service.util.RoleService;
 import course.service.util.UserService;
 

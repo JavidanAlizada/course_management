@@ -1,12 +1,14 @@
 package course.service.impl;
 
 import course.constant.ExceptionMessage;
+import course.constant.ModelType;
 import course.constant.Role;
 import course.model.User;
 import course.service.Service;
-import course.service.exception.ErrorMessageFactory;
+import course.service.factory.ErrorMessageFactory;
 import course.service.util.Register;
 import course.service.util.RoleService;
+import course.validator.impl.UniqueValidator;
 
 import java.util.Scanner;
 
@@ -50,7 +52,8 @@ public class Form implements Service {
             case 2: {
                 System.out.println("Enter your username: ");
                 String username = sc.next();
-
+                if (!UniqueValidator.isNameFieldUnique(username, ModelType.USER))
+                    throw ErrorMessageFactory.message(ExceptionMessage.UNIQUE_NAME);
                 System.out.println("Enter your password: ");
                 String password = sc.next();
                 String roles = roleService.getRolesAsString();
