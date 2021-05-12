@@ -87,7 +87,7 @@ public class AccountService implements Service {
 
     private void showAllAccountCredentials() throws Exception {
         if (getCurrentUser().getRole() != Role.ADMIN)
-            throw new Exception("Only Admin role can view all account details");
+            throw ErrorMessageFactory.message(ExceptionMessage.ACCOUNT_VIEW_ROLE_RESTRICTION);
         for (User user : service.getAllUsers()) {
             System.out.println(user + "\n");
         }
