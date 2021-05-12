@@ -1,0 +1,90 @@
+[
+  {
+    "id": 0,
+    "user": {
+      "id": 3,
+      "username": "ddd",
+      "password": "ddd",
+      "role": "ATTENDER"
+    },
+    "course": {
+      "id": 0,
+      "name": "abab",
+      "description": "abab",
+      "content": "abab",
+      "price": 10,
+      "createdBy": {
+        "id": 0,
+        "username": "aaa",
+        "password": "aaa",
+        "role": "TUTOR"
+      }
+    }
+  },
+  {
+    "id": 1,
+    "user": {
+      "id": 3,
+      "username": "ddd",
+      "password": "ddd",
+      "role": "ATTENDER"
+    },
+    "course": {
+      "id": 1,
+      "name": "acac",
+      "description": "acac",
+      "content": "acac",
+      "price": 15,
+      "createdBy": {
+        "id": 0,
+        "username": "aaa",
+        "password": "aaa",
+        "role": "TUTOR"
+      }
+    }
+  },
+  {
+    "id": 2,
+    "user": {
+      "id": 3,
+      "username": "ddd",
+      "password": "ddd",
+      "role": "ATTENDER"
+    },
+    "course": {
+      "id": 2,
+      "name": "adad",
+      "description": "adad",
+      "content": "adad",
+      "price": 20,
+      "createdBy": {
+        "id": 1,
+        "username": "bbb",
+        "password": "bbb",
+        "role": "TUTOR"
+      }
+    }
+  },
+  {
+    "id": 3,
+    "user": {
+      "id": 3,
+      "username": "ddd",
+      "password": "ddd",
+      "role": "ATTENDER"
+    },
+    "course": {
+      "id": 3,
+      "name": "afaf",
+      "description": "afaf",
+      "content": "afaf",
+      "price": 100,
+      "createdBy": {
+        "id": 1,
+        "username": "bbb",
+        "password": "bbb",
+        "role": "TUTOR"
+      }
+    }
+  }
+]
