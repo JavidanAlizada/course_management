@@ -202,7 +202,7 @@ public class CourseService implements Service {
                 .collect(Collectors.toList());
     }
 
-    static final class CourseServiceDetailsImplementation {
+    private static final class CourseServiceDetailsImplementation {
         private static final CourseRepository repository;
 
         static {

@@ -6,12 +6,7 @@ import course.service.factory.ServiceFactory;
 import java.util.Scanner;
 
 public class Main {
-    private static Exception exception;
     private static boolean isProcessing = true;
-
-    public static void setException(Exception exception) {
-        Main.exception = exception;
-    }
 
     private static void showMenu() {
         System.out.println("Enter service number which you want to use : ");
@@ -22,30 +17,27 @@ public class Main {
     }
 
     private static void exceptionHandler(Exception exception) {
-        setException(exception);
         ServiceFactory.runService(ServiceType.EXCEPTION).service(exception);
-        setException(null);
     }
 
     private static void process(int chosenServiceNumber) throws Exception {
+        ServiceType service = ServiceType.EXCEPTION;
         switch (chosenServiceNumber) {
             case 1:
-                ServiceFactory.runService(ServiceType.ACCOUNT).service();
+                service = ServiceType.ACCOUNT;
                 break;
             case 2:
-                ServiceFactory.runService(ServiceType.COURSE).service();
+                service = ServiceType.COURSE;
                 break;
             case 3:
-                ServiceFactory.runService(ServiceType.FORM).service();
+                service = ServiceType.FORM;
                 break;
             case 4:
-                ServiceFactory.runService(ServiceType.COMPLETED).service();
+                service = ServiceType.COMPLETED;
                 isProcessing = false;
                 break;
-            default:
-                ServiceFactory.runService(ServiceType.EXCEPTION).service();
-                break;
         }
+        ServiceFactory.runService(service).service();
     }
 
     private static void execute(Scanner scanner) {
